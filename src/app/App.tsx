@@ -1,8 +1,11 @@
+import { Navbar } from "widgets/Navbar"
+import { AppRoutes } from "./providers/Router"
 
 const App = () => {
     return (
-        <div className='App'>
-            <div>Hello world</div>
+        <div>
+            <Navbar />
+            <AppRoutes />
         </div>
     )
 }
