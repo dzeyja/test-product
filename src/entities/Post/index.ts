@@ -11,3 +11,7 @@ export {
 export {
     PostsList
 } from './ui/PostsList/PostsList'
+
+export {
+    deletePost
+} from './model/services/deletePost'

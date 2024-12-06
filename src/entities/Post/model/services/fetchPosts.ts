@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { Post } from "../types/PostSchema";
+import { ThunkConfig } from "app/providers/StoreProvider";
 
-export const fetchPosts = createAsyncThunk<Post[], void, {rejectValue: string}>(
+export const fetchPosts = createAsyncThunk<Post[], void, ThunkConfig<string>>(
     'product/fetchPosts',
      async (_, thunkAPI) => {
         try {
-            const response = await axios.get<Post[]>('http://localhost:5000/posts')
+            const response = await thunkAPI.extra.api.get<Post[]>('/posts')
     
             return response.data
         } catch(e) {

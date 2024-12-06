@@ -3,5 +3,10 @@ export {
 } from './ui/StoreProvider'
 
 export {
-    StateSchema 
+    StateSchema ,
+    ThunkConfig
 } from './config/StateSchema'
+
+export {
+    AppDispatch
+} from './config/store'

@@ -1,51 +1,65 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from './AddPostForm.module.scss'
 import { Button } from "shared/ui/Button/Button"
-import { FormEvent, useState } from "react"
-import { Post, postActions } from "entities/Post"
-import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import { getAddPostData } from "../model/selcetors/getAddPostData/getAddPostData"
+import { getAddPostIsLoading } from "../model/selcetors/getAddPostILoading/getAddPostIsLoading"
+import { ChangeEvent, FormEvent, memo } from "react"
+import { addPostActions } from "../model/slice/addPostSlice"
+import { addPost } from "../model/services/addPost"
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 
 interface AddPostFormProps {
     className?: string
 }
 
-export const AddPostForm = ({ className }: AddPostFormProps) => {
-    const [post, setPost] = useState<Post>({
-        id: 0,
-        title: '',
-        body: ''
-    })
-    const dispatch = useDispatch()
+export const AddPostForm = memo(({ className }: AddPostFormProps) => {
+    const post = useSelector(getAddPostData)
+    const isLoading = useSelector(getAddPostIsLoading)
+    const dispatch = useAppDispatch()
 
-    const addPost = (e: FormEvent<HTMLFormElement>) => {
+    const titleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(addPostActions.setTitle(e.target.value))
+    }
+
+    const bodyChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(addPostActions.setBody(e.target.value))
+    }
+
+    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-
-        dispatch(postActions.addPost({...post, id: 101}))
+        const result = await dispatch(addPost({...post, id: Date.now()}))
+        
+        if(result.meta.requestStatus === 'fulfilled') {
+            alert('Пост был успешно создан, вернитесь в ленту.')
+        }
     }
 
     return (
         <div className={cls.AddPost}>
             <div className={cls.title}>Создать пост</div>
-            <form onSubmit={addPost} className={classNames(cls.AddPostForm, {}, [className])}>
+            <form onSubmit={onSubmit} className={classNames(cls.AddPostForm, {}, [className])}>
                 <input 
+                    value={post.title}
                     className={cls.input}
-                    onChange={(e) => setPost({...post, title: e.target.value})} 
+                    onChange={titleChange} 
                     placeholder="Заголовок" 
                     type="text" 
                 />
                 <input 
+                    value={post.body}
                     className={cls.input}
-                    onChange={(e) => setPost({...post, body: e.target.value})}
+                    onChange={bodyChange}
                     placeholder="Описание" 
                     type="text" 
                 />
                 <Button 
                     type="submit"
                 >
-                    Создать
+                    {isLoading ? 'Создается...' : 'Создать'}
                 </Button>
             </form>
         </div>
     )
-}
+})

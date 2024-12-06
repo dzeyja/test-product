@@ -1,12 +1,13 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from './CreatePostPage.module.scss'
 import { AddPostForm } from "features/AddPost"
+import { memo } from "react"
 
 interface CreatePostPageProps {
     className?: string
 }
 
-export const CreatePostPage = ({ className }: CreatePostPageProps) => {
+export const CreatePostPage = memo(({ className }: CreatePostPageProps) => {
 
 
     return (
@@ -14,4 +15,4 @@ export const CreatePostPage = ({ className }: CreatePostPageProps) => {
             <AddPostForm />
         </div>
     )
-}
+})

@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Post, PostSchema } from "../types/PostSchema";
 import { fetchPosts } from "../services/fetchPosts";
+import { deletePost } from "../services/deletePost";
+import { stat } from "fs";
+import { toggleLike } from "../services/toggleLike";
 
 const initialState: PostSchema = {
     data: [],
@@ -12,9 +15,6 @@ export const postSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        removePost: (state, action: PayloadAction<number>) => {
-            state.data = state.data.filter((post) => post.id !== action.payload)
-        },
         addPost: (state, action: PayloadAction<Post>) => {
             state.data.push(action.payload)
         }
@@ -30,6 +30,20 @@ export const postSlice = createSlice({
             })
             .addCase(fetchPosts.rejected, (state, action) => {
                 state.error = action.payload
+            })
+            // Удаление поста
+            .addCase(deletePost.fulfilled, (state, action) => {
+                state.data = state.data.filter((post) => post.id !== action.payload)
+            })
+            .addCase(deletePost.rejected, (state, action) => {
+                state.error = action.payload
+            })
+            // Лайк
+            .addCase(toggleLike.fulfilled, (state, action) => {
+                const post = state.data.find((post) => post.id === action.payload.id)
+                if(post) {
+                    post.liked = action.payload.liked
+                }
             })
     }
 })
