@@ -1,5 +1,5 @@
 .Navbar {
-    border: 1px solid teal;
+    border-bottom: 1px solid teal;
 }
 
 .nav {
@@ -12,12 +12,14 @@
 .logo {
     font: var(--font-l);
     font-weight: 700;
+    color: var(--text-color);
 }
 
 .links {
     font: var(--font-m);
     opacity: 1;
     cursor: pointer;
+    color: var(--text-color);
 
     transition: all .2s;
 }

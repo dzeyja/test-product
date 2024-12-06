@@ -1,0 +1,26 @@
+.imgWrapper {
+    border-radius: 15px;
+    background-color: rgb(27, 77, 158);
+    width: 40%;
+    height: 250px;
+}
+
+.PostPage {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.title {
+    font: var(--font-l);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.body {
+    margin-bottom: 15px;
+}
+
+.textContent {
+    width: 50%;
+}

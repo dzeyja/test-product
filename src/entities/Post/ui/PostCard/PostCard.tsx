@@ -6,22 +6,26 @@ import { useDispatch } from "react-redux"
 import { deletePost } from "../../model/services/deletePost"
 import { LikeButton } from "../LikeButton/LikeButton"
 import { memo } from "react"
+import { useNavigate } from "react-router-dom"
 
 interface PostCardProps {
-    className?: string
     post: Post
 }
 
-export const PostCard = memo(({ className, post }: PostCardProps) => {
-
+export const PostCard = memo(({ post }: PostCardProps) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleDelete = (id: number) => {
         dispatch(deletePost(id))
     }
 
     return (
-        <div key={post.id} className={cls.PostCard}>
+        <div 
+            onClick={() => navigate(`/posts/${post.id}`)} 
+            key={post.id} 
+            className={cls.PostCard}
+        >
             <div className={cls.imgWrapper}></div>
             <div className={cls.textContent}>
                 <div className={cls.postTitle}>

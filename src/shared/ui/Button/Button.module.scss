@@ -4,6 +4,13 @@
     color: #fff;
     padding: 10px 20px;
     border-radius: 30px;
+    opacity: 1;
+
+    transition: all .3s linear;
+}
+
+.primary:hover {
+    opacity: 0.5;
 }
 
 .red {
@@ -13,4 +20,11 @@
     color: #fff;
     padding: 7px 20px;
     border-radius: 30px;
+    opacity: 1;
+
+    transition: all .3s linear;
+}
+
+.red:hover {
+    opacity: 0.5;
 }

@@ -7,7 +7,7 @@ interface CreatePostPageProps {
     className?: string
 }
 
-export const CreatePostPage = memo(({ className }: CreatePostPageProps) => {
+const CreatePostPage = memo(({ className }: CreatePostPageProps) => {
 
 
     return (
@@ -16,3 +16,5 @@ export const CreatePostPage = memo(({ className }: CreatePostPageProps) => {
         </div>
     )
 })
+
+export default CreatePostPage

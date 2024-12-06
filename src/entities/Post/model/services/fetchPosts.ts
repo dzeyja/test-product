@@ -3,7 +3,7 @@ import { Post } from "../types/PostSchema";
 import { ThunkConfig } from "app/providers/StoreProvider";
 
 export const fetchPosts = createAsyncThunk<Post[], void, ThunkConfig<string>>(
-    'product/fetchPosts',
+    'post/fetchPosts',
      async (_, thunkAPI) => {
         try {
             const response = await thunkAPI.extra.api.get<Post[]>('/posts')

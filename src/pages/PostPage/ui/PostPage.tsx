@@ -1,15 +1,42 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from './PostPage.module.scss'
-import { memo } from "react"
+import { memo, useEffect } from "react"
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
+import { fetchPostById, getPostById, LikeButton } from "entities/Post"
+import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { StateSchema } from "app/providers/StoreProvider"
 
 interface PostPageProps {
     className?: string
 }
 
-export const PostPage = memo(({ className }: PostPageProps) => {
+const PostPage = memo(({ className }: PostPageProps) => {
+    const dispatch = useAppDispatch()
+    const params = useParams()
+    const id = Number(params.id)
+    const post = useSelector((state: StateSchema) => getPostById(state,id))
+
+    useEffect(() => {
+        dispatch(fetchPostById(id))
+    }, [])
 
     return (
-        <div className={classNames(cls.PostPage, {}, [className])}>
+        <div className="container">
+            <div className={classNames(cls.PostPage, {}, [className])}>
+                <div className={cls.imgWrapper}></div>
+                <div className={cls.textContent}>
+                    <div className={cls.title}>
+                        {post.title}
+                    </div>
+                    <div className={cls.body}>
+                        {post.body}
+                    </div>
+                    <LikeButton id={id} isLiked={post.liked}/>
+                </div>
+            </div>
         </div>
     )
 })
+
+export default PostPage

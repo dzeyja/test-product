@@ -1,3 +1,3 @@
 export {
-    CreatePostPage
-} from './ui/CreatePostPage'
+    CreatePostPageAsync as CreatePostPage
+} from './ui/CreatePostPageAsync'
