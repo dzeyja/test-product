@@ -10,7 +10,7 @@ export enum AppRoutes {
 }
 
 export const AppPaths: Record<AppRoutes, string> = {
-    [AppRoutes.MAIN]: '/',
+    [AppRoutes.MAIN]: '/test-product',
     [AppRoutes.POST]: '/posts/:id',
     [AppRoutes.CREATE_POST]: '/create-post'
 }
