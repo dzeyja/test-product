@@ -1,0 +1,25 @@
+.AddPostForm {
+    margin: 0 auto;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    font: var(--font-m);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid teal;
+    border-radius: 25px;
+}
+
+.title {
+    font: var(--font-l);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.AddPost {  
+    margin-top: 200px;
+}

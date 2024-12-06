@@ -1,5 +1,6 @@
 .PostsList {
     margin-top: 30px;
+    gap: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -7,12 +8,38 @@
 }
 
 .postCard {
-    padding: 20px;
     width: 31%;
     border: 2px solid teal;
+}
+
+.textContent {
+    padding: 20px;
 }
 
 .postTitle {
     font: var(--font-l);
     margin-bottom: 15px;
+    display: -webkit-box;       /* Включить блочную модель для текста */
+    -webkit-line-clamp: 1;      /* Количество видимых строк */
+    -webkit-box-orient: vertical; /* Установить направление текста */
+    overflow: hidden;           /* Скрыть избыточный текст */
+    text-overflow: ellipsis;
+}
+
+.postBody {
+    display: -webkit-box;       /* Включить блочную модель для текста */
+    -webkit-line-clamp: 2;      /* Количество видимых строк */
+    -webkit-box-orient: vertical; /* Установить направление текста */
+    overflow: hidden;           /* Скрыть избыточный текст */
+    text-overflow: ellipsis;    /* Добавить многоточие */
+}
+
+.imgWrapper {
+    background-color: antiquewhite;
+    width: 100%;
+    height: 250px;
+}
+
+.postActions {
+    margin-top: 20px;
 }

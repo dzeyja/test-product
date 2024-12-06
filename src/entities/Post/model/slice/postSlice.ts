@@ -12,6 +12,12 @@ export const postSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
+        removePost: (state, action: PayloadAction<number>) => {
+            state.data = state.data.filter((post) => post.id !== action.payload)
+        },
+        addPost: (state, action: PayloadAction<Post>) => {
+            state.data.push(action.payload)
+        }
     },
     extraReducers: (build) => {
         build 

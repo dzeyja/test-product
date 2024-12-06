@@ -4,7 +4,8 @@ export {
 } from './model/slice/postSlice'
 
 export {
-    PostSchema
+    PostSchema,
+    Post
 } from './model/types/PostSchema'
 
 export {
