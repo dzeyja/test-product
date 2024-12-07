@@ -5,10 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 import { StoreProvider } from "app/providers/StoreProvider";
 
 render(
-    <StoreProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+        <StoreProvider>
             <App />
-        </BrowserRouter>
-    </StoreProvider>,
+        </StoreProvider>
+    </BrowserRouter>,
     document.getElementById('root')
 )
