@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Post, PostSchema } from "../types/PostSchema";
 import { fetchPosts } from "../services/fetchPosts";
 import { deletePost } from "../services/deletePost";
-import { stat } from "fs";
 import { toggleLike } from "../services/toggleLike";
+import { fetchPostById } from "../services/fetchPostById";
 
 const initialState: PostSchema = {
     data: [],
@@ -29,6 +29,7 @@ export const postSlice = createSlice({
                 state.data = action.payload
             })
             .addCase(fetchPosts.rejected, (state, action) => {
+                state.isLoading = false
                 state.error = action.payload
             })
             // Удаление поста
@@ -45,6 +46,19 @@ export const postSlice = createSlice({
                     post.liked = action.payload.liked
                 }
             })
+            // Пост по айди
+            .addCase(fetchPostById.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(fetchPostById.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.data.push(action.payload)
+            })
+            .addCase(fetchPostById.rejected, (state, action) => {
+                state.isLoading = false
+                state.error = action.payload
+            })
+            
     }
 })
 

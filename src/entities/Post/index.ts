@@ -27,3 +27,7 @@ export {
 export {
     LikeButton
 } from './ui/LikeButton/LikeButton'
+
+export {
+    getPostIsLoading
+} from './model/selectors/getPostIsLoading/getPostIsloading'

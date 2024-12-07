@@ -6,7 +6,7 @@ export const fetchPostById = createAsyncThunk<Post, number, ThunkConfig<string>>
     'post/fetchPostById',
      async (postId, thunkAPI) => {
         try {
-            const response = await thunkAPI.extra.api.get(`/posts/${postId}`)
+            const response = await thunkAPI.extra.api.get<Post>(`/posts/${postId}`)
             
             return response.data
         } catch(e) {

@@ -14,7 +14,8 @@ export const LikeButton = memo(({ id, isLiked }: LikeButtonProps) => {
 
     const dispatch = useDispatch()
 
-    const handleLike = () => {
+    const handleLike = (e: any) => {
+        e.stopPropagation()
         dispatch(toggleLike({id, isLiked}))
     }
 

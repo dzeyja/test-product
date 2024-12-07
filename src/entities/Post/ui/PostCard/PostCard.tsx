@@ -16,32 +16,34 @@ export const PostCard = memo(({ post }: PostCardProps) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleDelete = (id: number) => {
+    const handleDelete = (e: any, id: number) => {
+        e.stopPropagation()
+
         dispatch(deletePost(id))
     }
 
     return (
         <div 
-            onClick={() => navigate(`/posts/${post.id}`)} 
-            key={post.id} 
+            onClick={() => navigate(`/posts/${post?.id}`)} 
+            key={post?.id} 
             className={cls.PostCard}
         >
             <div className={cls.imgWrapper}></div>
             <div className={cls.textContent}>
                 <div className={cls.postTitle}>
-                    {post.title}
+                    {post?.title}
                 </div>
                 <div className={cls.postBody}>
-                    {post.body}
+                    {post?.body}
                 </div>
                 <div className={cls.postActions}>
                     <Button 
                         theme={ButtonTheme.RED}
-                        onClick={() => handleDelete(post.id)}
+                        onClick={(e) => handleDelete(e, post.id)}
                     >
                         Удалить
                     </Button>
-                    <LikeButton id={post.id} isLiked={post.liked} />
+                    <LikeButton id={post.id} isLiked={post?.liked} />
                 </div>
             </div>
         </div>
