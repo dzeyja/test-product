@@ -4,7 +4,7 @@ import { Button } from "shared/ui/Button/Button"
 import { useSelector } from "react-redux"
 import { getAddPostData } from "../model/selcetors/getAddPostData/getAddPostData"
 import { getAddPostIsLoading } from "../model/selcetors/getAddPostILoading/getAddPostIsLoading"
-import { ChangeEvent, FormEvent, memo } from "react"
+import { ChangeEvent, FormEvent, memo, useState } from "react"
 import { addPostActions } from "../model/slice/addPostSlice"
 import { addPost } from "../model/services/addPost"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
@@ -29,6 +29,11 @@ export const AddPostForm = memo(({ className }: AddPostFormProps) => {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        if(!post.title.trim() || !post.body.trim()) {
+            alert('Пожалуйста, заполните все поля.')
+            return
+        }
 
         const result = await dispatch(addPost({...post, id: Date.now()}))
         
