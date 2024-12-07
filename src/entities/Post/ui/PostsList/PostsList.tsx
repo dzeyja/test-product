@@ -8,6 +8,7 @@ import { PostCard } from "../PostCard/PostCard"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { getPostIsLoading } from "entities/Post/model/selectors/getPostIsLoading/getPostIsloading"
 import { Loader } from "shared/ui/Loader/Loader"
+import { Text } from "shared/ui/Text/Text"
 
 interface PostsListProps {
     className?: string
@@ -25,7 +26,11 @@ export const PostsList = memo(({ className }: PostsListProps) => {
     return (
         <>
             {isLoading ? 
-                <Loader /> :
+                <>  
+                    <Text className={cls.loaderTitle} title="Пожалуйста подождите запускается сервер"/>
+                    <Loader /> 
+                </>
+                :
                 <div className="container">
                     <div className={classNames(cls.PostsList, {}, [className])}>
                         {data.map((post) => (
