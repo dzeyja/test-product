@@ -8,7 +8,8 @@ import { fetchPostById } from "../services/fetchPostById";
 const initialState: PostSchema = {
     data: [],
     isLoading: false,
-    error: ''
+    error: '',
+    likedFilter: false
 }
 
 export const postSlice = createSlice({
@@ -17,6 +18,9 @@ export const postSlice = createSlice({
     reducers: {
         addPost: (state, action: PayloadAction<Post>) => {
             state.data.push(action.payload)
+        },
+        toogleLikeFilter: (state) => {
+            state.likedFilter = !state.likedFilter
         }
     },
     extraReducers: (build) => {

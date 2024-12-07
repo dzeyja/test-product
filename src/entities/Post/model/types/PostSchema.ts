@@ -9,4 +9,5 @@ export interface PostSchema {
     data: Post[]
     isLoading: boolean
     error?: string
+    likedFilter?: boolean
 }

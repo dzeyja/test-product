@@ -31,3 +31,11 @@ export {
 export {
     getPostIsLoading
 } from './model/selectors/getPostIsLoading/getPostIsloading'
+
+export {
+    getLikedFilter
+} from './model/selectors/getLikedFilter/getLikedFilter'
+
+export {
+    getFilteredPosts
+} from './model/selectors/getFilteredPosts/getFilteredPosts'
