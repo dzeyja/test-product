@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "app/providers/StoreProvider";
 import { Post } from "entities/Post";
+import { AppPaths } from "shared/config/routeConfig/routeConfig";
 
 export const addPost = createAsyncThunk<Post, Post, ThunkConfig<string>>(
     'post/addPosts',
@@ -14,7 +15,7 @@ export const addPost = createAsyncThunk<Post, Post, ThunkConfig<string>>(
                 throw new Error()
             }
 
-            thunkAPI.extra.navigate('/')
+            thunkAPI.extra.navigate(AppPaths.main)
 
             return response.data
         } catch(e) {

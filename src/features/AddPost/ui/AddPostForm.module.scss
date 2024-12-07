@@ -1,5 +1,6 @@
 .AddPostForm {
     margin: 0 auto;
+    margin-top: 25px;
     width: 500px;
     display: flex;
     flex-direction: column;
@@ -13,13 +14,8 @@
     border-radius: 25px;
 }
 
-.title {
-    font: var(--font-l);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 25px;
-}
 
 .AddPost {  
     margin-top: 200px;
+    text-align: center;
 }

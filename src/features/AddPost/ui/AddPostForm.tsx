@@ -8,6 +8,7 @@ import { ChangeEvent, FormEvent, memo } from "react"
 import { addPostActions } from "../model/slice/addPostSlice"
 import { addPost } from "../model/services/addPost"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
+import { Text } from "shared/ui/Text/Text"
 
 interface AddPostFormProps {
     className?: string
@@ -38,7 +39,7 @@ export const AddPostForm = memo(({ className }: AddPostFormProps) => {
 
     return (
         <div className={cls.AddPost}>
-            <div className={cls.title}>Создать пост</div>
+            <Text title="Создать пост"/>
             <form onSubmit={onSubmit} className={classNames(cls.AddPostForm, {}, [className])}>
                 <input 
                     value={post.title}
